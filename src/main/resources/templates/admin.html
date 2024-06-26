@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Page</title>
+  </head>
+  <body>
+    <h1>Admin Management</h1>
+
+    <!-- Contoh form untuk menambah admin -->
+    <form th:action="@{/admin}" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" />
+      <br />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" />
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+
+    <!-- Contoh tampilan daftar admin -->
+    <h2>List of Admins</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Loop untuk menampilkan admin -->
+        <tr th:each="admin : ${admins}">
+          <td th:text="${admin.id}">1</td>
+          <td th:text="${admin.name}">John Doe</td>
+          <td th:text="${admin.email}">john.doe@example.com</td>
+          <td>
+            <!-- Link untuk edit dan delete -->
+            <a th:href="@{/admin/edit/{id}(id=${admin.id})}">Edit</a>
+            <a th:href="@{/admin/delete/{id}(id=${admin.id})}">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
