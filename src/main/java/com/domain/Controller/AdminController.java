@@ -19,7 +19,7 @@ public class AdminController {
     public String findAll(Model model) {
         model.addAttribute("admins", adminService.findAll());
         model.addAttribute("admin", new Admin());
-        return "admin"; // Hanya nama template tanpa .html
+        return "admin";
     }
 
     @PostMapping
